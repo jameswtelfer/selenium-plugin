@@ -44,6 +44,7 @@ public class SeleniumTest {
         browsers.add(new IEBrowser(1, "", ""));
         browsers.add(new FirefoxBrowser(1, "", ""));
         browsers.add(new OperaBrowser(1, "", ""));
+        browsers.add(new EdgeBrowser(1, "", ""));
 
         CustomWDConfiguration cc = new CustomWDConfiguration(5000, -1, browsers, null, 5);
         addConfiguration("customWD", new NodeLabelMatcher("label-node"), cc);
@@ -54,11 +55,13 @@ public class SeleniumTest {
         Collection<SeleniumTestSlotGroup> slots = getPlugin().getRemoteControls();
         assertEquals(1, slots.size());
         List<SeleniumTestSlot> testSlots = slots.iterator().next().getSlots();
-        assertEquals(4, testSlots.size());
+        assertEquals(browsers.size(), testSlots.size());
         assertHasBrowser(true, testSlots, DesiredCapabilities.firefox().getBrowserName());
         assertHasBrowser(true, testSlots, DesiredCapabilities.htmlUnit().getBrowserName());
         assertHasBrowser(true, testSlots, DesiredCapabilities.internetExplorer().getBrowserName());
         assertHasBrowser(true, testSlots, DesiredCapabilities.opera().getBrowserName());
+        String edgeName = DesiredCapabilities.edge().getBrowserName();
+        assertHasBrowser(true, testSlots, DesiredCapabilities.edge().getBrowserName());
     }
 
     private static void assertHasBrowser(boolean validationValue, List<SeleniumTestSlot> slots, String browser) {

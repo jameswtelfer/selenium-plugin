@@ -4,10 +4,7 @@ import hudson.Extension;
 import hudson.model.Computer;
 import hudson.model.Descriptor;
 import hudson.plugins.selenium.callables.RetrieveAvailablePort;
-import hudson.plugins.selenium.configuration.browser.webdriver.ChromeBrowser;
-import hudson.plugins.selenium.configuration.browser.webdriver.FirefoxBrowser;
-import hudson.plugins.selenium.configuration.browser.webdriver.IEBrowser;
-import hudson.plugins.selenium.configuration.browser.webdriver.WebDriverBrowser;
+import hudson.plugins.selenium.configuration.browser.webdriver.*;
 import hudson.plugins.selenium.configuration.browser.webdriver.WebDriverBrowser.WebDriverBrowserDescriptor;
 import hudson.plugins.selenium.process.SeleniumRunOptions;
 import hudson.util.FormValidation;
@@ -40,6 +37,7 @@ public class CustomWDConfiguration extends SeleniumNodeConfiguration {
         browsers.add(new IEBrowser(1, "", ""));
         browsers.add(new FirefoxBrowser(5, "", ""));
         browsers.add(new ChromeBrowser(5, "", ""));
+        browsers.add(new EdgeBrowser(5, "", ""));
     }
 
     @DataBoundConstructor
